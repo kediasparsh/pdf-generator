@@ -2,8 +2,6 @@ package com.freightfox.pdfgenerator.controller;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
-import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.when;
 
 import java.io.IOException;
@@ -16,6 +14,7 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnitRunner;
 import org.springframework.core.io.InputStreamResource;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.thymeleaf.spring6.SpringTemplateEngine;
@@ -55,13 +54,13 @@ public class BillControllerTest {
         bill.setBuyerAddress("New Delhi, India");
         bill.setItems(items);
 
-        when(billService.fileName(any(Bill.class))).thenReturn("bill.pdf");
-        when(billService.html2pdf(anyString())).thenReturn(new byte[0]);
+        when(billService.fileName(bill)).thenReturn("bill.pdf");
+        when(billService.html2pdf(null)).thenReturn(new byte[0]);
 
         ResponseEntity<InputStreamResource> response = billController.generatePDF(bill);
 
         assertNotNull(response.getBody());
-        assertEquals(200, response.getStatusCode());
+        assertEquals(HttpStatus.OK, response.getStatusCode());
         assertEquals(MediaType.APPLICATION_PDF, response.getHeaders().getContentType());
     }
 }
