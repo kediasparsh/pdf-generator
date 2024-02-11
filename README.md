@@ -17,7 +17,7 @@ This project provides a REST API to generate PDF using Thymeleaf. It accepts dat
 4. Run the application:
 
    - If using an IDE, run the main application class.
-   - If using Maven, run `mvn spring-boot:run` from the project's root directory.
+   - If using Maven, run `mvn clean spring-boot:run` from the project's root directory.
 
 5. The application should now be running on `http://localhost:8080`.
 
