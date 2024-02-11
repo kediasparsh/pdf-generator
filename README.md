@@ -30,7 +30,7 @@ This project provides a REST API to generate PDF using Thymeleaf. It accepts dat
 #### Request
 
 ```
-POST /weather
+POST /bill
 Content-Type: application/json
 
 {
